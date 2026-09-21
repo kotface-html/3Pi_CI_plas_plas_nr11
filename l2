@@ -1,0 +1,21 @@
+#include <iostream>
+int main() {
+    std::string tekst = "Klara ma kota";
+     std::string toFind = "ma";
+     int counter = 0;
+    for(int i=0; i<tekst.length();i++){
+        counter = 0 ;
+        for(int j=0;j<toFind.length();j++){
+        if(toFind[j]==tekst[i+j]){
+            counter++;
+        }
+        
+            }
+        if(counter == toFind.length()){
+            std::cout<<"znaleziono na "<<i<<std::endl;
+        }
+    }
+
+    
+    return 0;
+}
