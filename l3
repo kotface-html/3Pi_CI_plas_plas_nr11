@@ -1,0 +1,54 @@
+Utwórz tablicę o nazwie tab1, zawierającą następujące liczby całkowite: 7, 3, 1, 6, 9, 5, 4, 10, 2, 2.
+Wypisz zawartość 5 komórki tablicy na ekran. Zmień zawartość 7 komórki tablicy, wprowadzając do niej wartość 12.
+Utwórz drugą tablicę o nazwie tab2, o tej samej wielkości co tab1. Przepisz zawartość tab1 do tab2.
+Utwórz trzecią tablicę o nazwie tab3, o tej samej wielkości co dwie poprzednie. Zawartością komórek tablicy tab3 jest suma komórek o tych samych indeksach tablic tab1 i tab2.
+Przepisz ponownie zawartość tablicy tab1 do tablicy tab2, jednak w odwrotnej kolejności.
+
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    // 1. Utworzenie tablicy tab1 z podanymi liczbami
+    int tab1[10] = {7, 3, 1, 6, 9, 5, 4, 10, 2, 2};
+
+    // Wypisanie zawartości 5. komórki (indeks 4)
+    cout << "5. komorka tab1: " << tab1[4] << endl;
+
+    // Zmiana zawartości 7. komórki (indeks 6) na wartość 12
+    tab1[6] = 12;
+
+    // 2. Utworzenie tablicy tab2 i przepisanie zawartości tab1
+    int tab2[10];
+    for (int i = 0; i < 10; i++) {
+        tab2[i] = tab1[i];
+    }
+
+    // 3. Utworzenie tablicy tab3 (suma elementów tab1 i tab2)
+    int tab3[10];
+    for (int i = 0; i < 10; i++) {
+        tab3[i] = tab1[i] + tab2[i];
+    }
+
+    // Wyświetlenie tab3
+    cout << "tab3 (suma): ";
+    for (int i = 0; i < 10; i++) {
+        cout << tab3[i] << " ";
+    }
+    cout << endl;
+
+    // 4. Przepisanie tab1 do tab2 w odwrotnej kolejności
+    for (int i = 0; i < 10; i++) {
+        tab2[i] = tab1[9 - i];
+    }
+
+    // Wyświetlenie tab2 w odwrotnej kolejności
+    cout << "tab2 w odwrotnej kolejnosci: ";
+    for (int i = 0; i < 10; i++) {
+        cout << tab2[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
