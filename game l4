@@ -1,0 +1,35 @@
+#include <iostream>
+
+using namespace std; 
+const int SIZE_X = 12;
+const int SIZE_Y = 12;
+
+char mapa[ SIZE_X ][ SIZE_Y ];
+
+void genmap(){
+    for(int y = 0 ; y < SIZE_Y; y++){
+        for(int x = 0 ; x < SIZE_X; x++){
+            if(y==SIZE_Y-1 || x==SIZE_X-1 || y ==0 || x==0){
+                mapa[y][x] = '#';
+            }else{
+                mapa[y][x] = '*';
+            }
+            
+        }
+    }
+    mapa[SIZE_X/2][SIZE_Y/2] = 'P';
+}
+void display(){
+    for(int y = 0 ; y < SIZE_Y; y++){
+        for (int x = 0 ; x < SIZE_X; x++ ){
+            cout<<" "<<mapa[y][x]<<" ";
+        }
+        cout<<endl;
+    }
+}
+int main() {
+
+    genmap();
+    display();
+    return 0;
+}
