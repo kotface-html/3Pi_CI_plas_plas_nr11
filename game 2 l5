@@ -1,0 +1,81 @@
+#include <iostream>
+
+using namespace std;
+
+const int SIZE_X = 13;
+const int SIZE_Y = 13;
+
+char mapa[SIZE_X][SIZE_Y];
+
+int posX = SIZE_X / 2, posY = SIZE_Y / 2;
+
+void genMap() {
+    for (int y = 0; y < SIZE_Y; y++) {
+        for (int x = 0; x < SIZE_X; x++) {
+            if (y == SIZE_Y - 1 || x == SIZE_X - 1 || y == 0 || x == 0) {
+                mapa[y][x] = '#';
+            } else {
+                mapa[y][x] = ' ';
+            }
+        }
+    }
+    mapa[posY][posX] = 'P';
+}
+
+void display() {
+    system("clear"); // Czyszczenie ekranu przed każdym rysowaniem
+    for (int y = 0; y < SIZE_Y; y++) {
+        for (int x = 0; x < SIZE_X; x++) {
+            cout << " " << mapa[y][x] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void movement() {
+    char moveChar = ' ';
+    cin >> moveChar;
+    
+    // Zapisujemy stare współrzędne, na wypadek gdyby gracz chciał wejść w ścianę
+    int oldX = posX;
+    int oldY = posY;
+
+    // Usuwamy gracza z obecnej pozycji
+    mapa[posY][posX] = ' ';
+
+    switch (moveChar) {
+        case 'w': 
+            posY--;
+            break;
+        case 's':
+            posY++;
+            break;
+        case 'a':
+            posX--;
+            break;
+        case 'd':
+            posX++;
+            break;
+    }
+
+    // Sprawdzamy kolizję: jeśli nowe pole to ściana, cofamy ruch
+    if (mapa[posY][posX] == '#') {
+        posX = oldX;
+        posY = oldY;
+    }
+
+    // Ustawiamy gracza na właściwej pozycji
+    mapa[posY][posX] = 'P';
+}
+
+int main() {
+    genMap();
+    
+    // Główna pętla gry
+    while (true) {
+        display(); 
+        movement();
+    }
+
+    return 0;
+}
